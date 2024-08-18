@@ -9,33 +9,39 @@
 
 
 
-void Pesquisar(struct classe *d, char *nome) {
-    struct aluno *alunoatual;
-    int suc = 0;
+void Pesquisar(Classe *d, const char *nome) {
+    Aluno *alunoAtual;
+    int encontrou = 0;
+
+    printf("Iniciando a pesquisa...\n");
 
     // Percorre a lista de classes
     while (d != NULL) {
-        alunoatual = d->alunos;
+        printf("Verificando classe: Série %u, Turma %c\n", d->serie, d->turma);
+        alunoAtual = d->alunos;
 
         // Percorre a lista de alunos na classe atual
-        while (alunoatual != NULL) {
-            if (strcmp(alunoatual->nome, nome) == 0) {
-                printf("Aluno encontrado: %s\n", alunoatual->nome);
-                printf("Matrícula: %d\n", alunoatual->matricula);
-                printf("Idade: %d\n", alunoatual->idade);
+        while (alunoAtual != NULL) {
+            if (strcmp(alunoAtual->nome, nome) == 0) {
+                // Aluno encontrado, imprime todas as informações
+                printf("Aluno encontrado:\n");
+                printf("Nome: %s\n", alunoAtual->nome);
+                printf("Matrícula: %d\n", alunoAtual->matricula);
+                printf("Idade: %d\n", alunoAtual->idade);
                 printf("Série: %u\n", d->serie);
                 printf("Turma: %c\n", d->turma);
                 printf("Etapa: %s\n", d->etapa);
                 printf("Nome do Professor: %s\n", d->nome_professor);
-                suc = 1;
+                printf("------------------------\n");
+                encontrou = 1;
             }
-            alunoatual = alunoatual->proxAluno;
+            alunoAtual = alunoAtual->proxAluno;
         }
 
-        d = d->prox;
+        d = d->prox; // Vai para a próxima classe
     }
 
-    if (!suc) {
-        printf("Aluno %s não encontrado.\n", nome);
+    if (!encontrou) {
+        printf("Nenhum aluno com o nome '%s' encontrado.\n", nome);
     }
 }
