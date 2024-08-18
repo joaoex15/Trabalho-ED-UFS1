@@ -26,5 +26,8 @@ int classe_insere(Classe **classes,
 int classe_remove(Classe *classe, Classe **classes);
 
 // TODO: Adicionar Validações
+	
+// Função para exibir as classes cadastradas
+void exibir_classes(Classe *inicio);
 
 #endif

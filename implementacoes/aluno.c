@@ -119,3 +119,30 @@ int removeAluno(
     }
     return 1;
 }
+
+
+void exibir_aluno( 
+    Classe *inicio,
+	uint8_t serie,
+	char turma)
+{
+	Classe *classe_atual = inicio;
+	
+	while(classe_atual != NULL) {
+		if(classe_atual->turma == turma && classe_atual->serie == serie) {
+			printf("Alunos matriculados na classe %d%c:\n", serie, turma);
+
+			Aluno* aluno_atual = classe_atual->aluno;
+		    while(aluno_atual != NULL) {
+				printf("Nome: %s, Idade: %d, Matricula: %d\n", aluno_atual->nome, 
+                        aluno_atual->idade, aluno_atual->matricula);
+				aluno_atual = aluno_atual->prox;
+			}
+			return;
+		}
+		
+		classe_atual = classe_atual->prox;
+	}
+	    printf("Classe %d%c nao encontrada!\n", serie, turma);
+        return;
+}

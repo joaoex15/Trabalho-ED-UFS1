@@ -25,4 +25,10 @@ int removeAluno(
     string etapa,
     string nome_professor);
 
+// Função para exibir alunos numa classe.
+void exibir_aluno( 
+	Classe *inicio,
+	int serie,
+	char turma);
+
 #endif
