@@ -112,6 +112,11 @@ void exibir_aluno(
 	
 	while(classe_atual != NULL) {
 		if(classe_atual->turma == turma && classe_atual->serie == serie) {
+            limpar_terminal();
+            if (classe_atual->alunos == NULL) {
+                printf("Não há alunos cadastrados nessa classe.\n");
+                return;
+            }
 			printf("Alunos matriculados na classe %d%c:\n", serie, turma);
 
 			Aluno* aluno_atual = classe_atual->alunos;
@@ -125,6 +130,7 @@ void exibir_aluno(
 		
 		classe_atual = classe_atual->prox;
 	}
-	    printf("Classe %d%c nao encontrada!\n", serie, turma);
-        return;
+    limpar_terminal();
+	printf("Classe %d%c nao encontrada!\n", serie, turma);
+    return;
 }

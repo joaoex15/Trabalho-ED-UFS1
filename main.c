@@ -252,6 +252,15 @@ void menu(Classe **classes) {
             continue;
         }
         getchar(); // Consumir o caractere '\n' deixado pelo scanf
+        if (opcao == 4 && *classes == NULL) {
+            limpar_terminal();
+            printf("Não há classes cadastradas.\n");
+            continue;
+        } else if ((opcao == 5 || opcao == 6) && *classes == NULL) {
+            limpar_terminal();
+            printf("Não há alunos cadastrados.\n");
+            continue;
+        }
 
         switch (opcao) {
             case 1:
@@ -264,6 +273,7 @@ void menu(Classe **classes) {
                 remover_aluno(classes);
                 break;
             case 4:
+                limpar_terminal();
                 exibir_classes(*classes);
                 break;
             case 5:
@@ -288,7 +298,8 @@ void menu(Classe **classes) {
                 pesquisar_aluno(*classes);
                 break;
             case 7:
-                printf("Saindo...\n");
+                limpar_terminal();
+                printf("Saindo...\n\n");
                 break;
             default:
                 printf("Opção inválida!\n");
