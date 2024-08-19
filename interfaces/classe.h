@@ -4,9 +4,21 @@
 
 #include "projeto.h"
 #include <stdint.h>
-
+#include "aluno.h"
 // Tipo abstrato Classe
 typedef struct classe Classe;
+typedef struct aluno Aluno;
+
+struct classe
+{
+    uint8_t serie;
+    char turma;
+    char etapa[20];
+    uint32_t qtd_alunos;
+    char nome_professor[100];
+    struct classe *prox;
+    Aluno *alunos;
+};
 
 // Função que inicializa uma lista de classes
 Classe *classe_inicializa();

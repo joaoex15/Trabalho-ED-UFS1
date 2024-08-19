@@ -3,7 +3,17 @@
 #define ALUNO_H
 
 // Tipo abstrato Aluno
+typedef struct classe Classe;
+
 typedef struct aluno Aluno;
+struct aluno
+{
+    int matricula;
+    char nome[40];
+    int idade;
+    struct aluno *proxAluno;
+    struct aluno *antAluno;
+};
 
 // Função que matricula um aluno em uma classe caso essa classe seja encontrada.
 int matriculaAluno(
@@ -31,4 +41,5 @@ void exibir_aluno(
 	int serie,
 	char turma);
 
+void Pesquisar(Classe *classes, const char *nome);
 #endif

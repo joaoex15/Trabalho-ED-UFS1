@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
-#include "aluno.c"
+
 #include "../interfaces/classe.h"
 #include "../interfaces/aluno.h"
 

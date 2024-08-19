@@ -4,10 +4,12 @@
 #include "interfaces/projeto.h"
 #include "interfaces/classe.h"
 #include "interfaces/aluno.h"
-#include "implementacoes/pesquisar.c"
 #include "implementacoes/classe.c"
-#include "implementacoes/projeto.c"
+#include "implementacoes/pesquisar.c"
 #include "implementacoes/aluno.c"
+#include "implementacoes/projeto.c"
+
+
 
 int matricula = 0;
 
@@ -65,7 +67,7 @@ void adicionar_classe(Classe **classes) {
 
 void adicionar_aluno(Classe **classes) {
     limpar_terminal();
-
+    matricula++;
     int idade;
     char nome[40];
     uint8_t serie;
@@ -94,7 +96,7 @@ void adicionar_aluno(Classe **classes) {
     limpar_terminal();
 
     printf("Classes existentes no sistema:\n");
-    exibir_classe(*classes);
+    exibir_classes(*classes);
 
     while (!serieExiste) {
         printf("Digite a série da classe do aluno (número): ");
@@ -143,7 +145,7 @@ void adicionar_aluno(Classe **classes) {
         exibir_erro();
     } else {
         printf("Aluno adicionado com sucesso!\n");
-        exibir_classe(*classes); // Exibir classes e alunos após adicionar um aluno
+        exibir_classes(*classes); // Exibir classes e alunos após adicionar um aluno
     }
 }
 
@@ -198,28 +200,7 @@ void remover_aluno(Classe **classes) {
     }
 }
 
-void exibir_classe(Classe *classes) {
-    Classe *classeAtual = classes;
 
-    while (classeAtual != NULL) {
-        printf("Série: %u\n", classeAtual->serie);
-        printf("Turma: %c\n", classeAtual->turma);
-        printf("Etapa: %s\n", classeAtual->etapa);
-        printf("Nome do Professor: %s\n", classeAtual->nome_professor);
-        printf("Quantidade de Alunos: %u\n", classeAtual->qtd_alunos);
-
-        Aluno *alunoAtual = classeAtual->alunos;
-        while (alunoAtual != NULL) {
-            printf("  Matrícula: %d\n", alunoAtual->matricula);
-            printf("  Nome: %s\n", alunoAtual->nome);
-            printf("  Idade: %d\n", alunoAtual->idade);
-            alunoAtual = alunoAtual->proxAluno;
-        }
-
-        classeAtual = classeAtual->prox;
-        printf("\n");
-    }
-}
 
 void pesquisar_aluno(Classe *classes) {
     limpar_terminal();
@@ -252,6 +233,8 @@ void limpar_memoria(Classe *classes) {
 
 void menu(Classe **classes) {
     int opcao;
+    uint8_t serie;
+    char turma;
 
     do {
 
@@ -259,9 +242,10 @@ void menu(Classe **classes) {
         printf("1. Adicionar classe\n");
         printf("2. Adicionar aluno\n");
         printf("3. Remover aluno\n");
-        printf("4. Exibir classes e alunos\n");
-        printf("5. Pesquisar aluno\n");
-        printf("6. Sair\n");
+        printf("4. Exibir classes\n");
+        printf("5. Exibir alunos\n");
+        printf("6. Pesquisar aluno\n");
+        printf("7. Sair\n");
         printf("Escolha uma opção: ");
         if (scanf("%d", &opcao) != 1) {
             printf("Entrada inválida.\n");
@@ -280,19 +264,37 @@ void menu(Classe **classes) {
                 remover_aluno(classes);
                 break;
             case 4:
-                exibir_classe(*classes);
+                exibir_classes(*classes);
                 break;
             case 5:
-                pesquisar_aluno(*classes);
+                limpar_terminal();
+                printf("Digite a série da classe dos alunos: ");
+                if (scanf("%hhu", &serie) != 1) {
+                    printf("Entrada inválida.\n");
+                    continue;
+                }
+                getchar(); // Consumir o caractere '\n' deixado pelo scanf
+
+                printf("Digite a turma da classe dos alunos: ");
+                if (scanf("%c", &turma) != 1) {
+                    printf("Entrada inválida.\n");
+                    continue;
+                }
+                getchar(); // Consumir o caractere '\n' deixado pelo scanf
+
+                exibir_aluno(*classes, serie, turma);
                 break;
             case 6:
+                pesquisar_aluno(*classes);
+                break;
+            case 7:
                 printf("Saindo...\n");
                 break;
             default:
                 printf("Opção inválida!\n");
                 break;
         }
-    } while (opcao != 6);
+    } while (opcao != 7);
 }
 
 int main() {

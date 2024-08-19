@@ -5,16 +5,6 @@
 #include "../interfaces/classe.h"
 #include "../interfaces/aluno.h"
 
-struct classe
-{
-    uint8_t serie;
-    char turma;
-    char etapa[20];
-    uint32_t qtd_alunos;
-    char nome_professor[100];
-    struct classe *prox;
-    Aluno *alunos;
-};
 
 Classe *classe_inicializa()
 {
@@ -75,7 +65,7 @@ void exibir_classes(Classe *inicio)
 
 	while(classe_atual != NULL){
 		printf("Classe %d%c - Professor: %s, Quantidade de Alunos: %d\n", classe_atual->serie, classe_atual->turma,
-		        classe_atual->professor, classe_atual->quantidade_alunos);
+		        classe_atual->nome_professor, classe_atual->qtd_alunos);
 		
 		classe_atual = classe_atual->prox;
 	}

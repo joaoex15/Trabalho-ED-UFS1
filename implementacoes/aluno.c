@@ -5,25 +5,7 @@
 #include "../interfaces/classe.h"
 #include "../interfaces/aluno.h"
 
-struct classe
-{
-    uint8_t serie;
-    char turma;
-    char etapa[20];
-    uint32_t qtd_alunos;
-    char nome_professor[100];
-    struct classe *prox;
-    Aluno *alunos;
-};
 
-struct aluno
-{
-    int matricula;
-    char nome[40];
-    int idade;
-    struct aluno *proxAluno;
-    struct aluno *antAluno;
-};
 
 int matriculaAluno(
     Classe **classes, 
@@ -123,7 +105,7 @@ int removeAluno(
 
 void exibir_aluno( 
     Classe *inicio,
-	uint8_t serie,
+	int serie,
 	char turma)
 {
 	Classe *classe_atual = inicio;
@@ -132,11 +114,11 @@ void exibir_aluno(
 		if(classe_atual->turma == turma && classe_atual->serie == serie) {
 			printf("Alunos matriculados na classe %d%c:\n", serie, turma);
 
-			Aluno* aluno_atual = classe_atual->aluno;
+			Aluno* aluno_atual = classe_atual->alunos;
 		    while(aluno_atual != NULL) {
 				printf("Nome: %s, Idade: %d, Matricula: %d\n", aluno_atual->nome, 
                         aluno_atual->idade, aluno_atual->matricula);
-				aluno_atual = aluno_atual->prox;
+				aluno_atual = aluno_atual->proxAluno;
 			}
 			return;
 		}
