@@ -113,7 +113,7 @@ void exibir_aluno(
 	while(classe_atual != NULL) {
 		if(classe_atual->turma == turma && classe_atual->serie == serie) {
             limpar_terminal();
-            if (classe_atual->alunos == NULL) {
+            if (classe_atual->alunos == 0) {
                 printf("Não há alunos cadastrados nessa classe.\n");
                 return;
             }
@@ -121,13 +121,11 @@ void exibir_aluno(
 
 			Aluno* aluno_atual = classe_atual->alunos;
 		    while(aluno_atual != NULL) {
-				printf("Nome: %s, Idade: %d, Matricula: %d\n", aluno_atual->nome, 
-                        aluno_atual->idade, aluno_atual->matricula);
+				printf("Nome: %s, Idade: %d, Matricula: %d\n", aluno_atual->nome, aluno_atual->idade, aluno_atual->matricula);
 				aluno_atual = aluno_atual->proxAluno;
 			}
 			return;
 		}
-		
 		classe_atual = classe_atual->prox;
 	}
     limpar_terminal();

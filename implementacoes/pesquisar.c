@@ -7,8 +7,6 @@
 #include "../interfaces/aluno.h"
 
 
-
-
 void Pesquisar(Classe *d, int matricula) {
     Aluno *alunoAtual;
     int encontrou = 0;
@@ -28,11 +26,7 @@ void Pesquisar(Classe *d, int matricula) {
                 printf("Nome: %s\n", alunoAtual->nome);
                 printf("Matrícula: %d\n", alunoAtual->matricula);
                 printf("Idade: %d\n", alunoAtual->idade);
-                printf("Série: %u\n", d->serie);
-                printf("Turma: %c\n", d->turma);
-                printf("Etapa: %s\n", d->etapa);
-                printf("Nome do Professor: %s\n", d->nome_professor);
-                printf("------------------------\n");
+                printf("Série: %u/%c, Etapa: %s, Professor: %s\n", d->serie, d->turma, d->etapa, d->nome_professor);
                 encontrou = 1;
             }
             alunoAtual = alunoAtual->proxAluno;
@@ -42,6 +36,7 @@ void Pesquisar(Classe *d, int matricula) {
     }
 
     if (!encontrou) {
+        limpar_terminal();
         printf("Nenhum aluno com a matrícula '%d' encontrado.\n", matricula);
     }
 }
