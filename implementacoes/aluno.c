@@ -57,6 +57,6 @@ int matricula_aluno(Aluno *aluno)
 void imprime_aluno(Aluno *aluno)
 {
     printf("Nome: %s\n", aluno->nome);
-    printf("Matrícula: %d\n", aluno->matricula);
+    printf("Matricula: %d\n", aluno->matricula);
     printf("Idade: %d\n", aluno->idade);
 }

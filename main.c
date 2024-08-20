@@ -15,10 +15,10 @@ void adicionar_classe(Classe **classes)
     char nome_professor[100];
     limpar_terminal();
 
-    printf("Digite a série (número): ");
+    printf("Digite a serie (numero): ");
     if (scanf("%hhu", &serie) != 1)
     {
-        printf("Entrada inválida.\n");
+        printf("Entrada invalida.\n");
         return;
     }
     getchar();
@@ -26,7 +26,7 @@ void adicionar_classe(Classe **classes)
     printf("Digite a turma (letra): ");
     if (scanf("%c", &turma) != 1)
     {
-        printf("Entrada inválida.\n");
+        printf("Entrada invalida.\n");
         return;
     }
     getchar();
@@ -72,7 +72,7 @@ void adicionar_aluno(Classe **classes)
     Classe *classeAtual;
     int serieExiste = 0;
 
-    printf("A matrícula do aluno será %d\n", matricula);
+    printf("A matricula do aluno sera %d\n", matricula);
 
     printf("Digite o nome do aluno: ");
     if (fgets(nome, sizeof(nome), stdin) == NULL)
@@ -85,7 +85,7 @@ void adicionar_aluno(Classe **classes)
     printf("Digite a idade do aluno: ");
     if (scanf("%d", &idade) != 1)
     {
-        printf("Entrada inválida.\n");
+        printf("Entrada invalida.\n");
         return;
     }
     getchar();
@@ -97,10 +97,10 @@ void adicionar_aluno(Classe **classes)
 
     while (!serieExiste)
     {
-        printf("Digite a série da classe do aluno (número): ");
+        printf("Digite a serie da classe do aluno (numero): ");
         if (scanf("%hhu", &serie) != 1)
         {
-            printf("Entrada inválida.\n");
+            printf("Entrada invalida.\n");
             return;
         }
         getchar();
@@ -118,14 +118,14 @@ void adicionar_aluno(Classe **classes)
 
         if (!serieExiste)
         {
-            printf("Série não encontrada. Por favor, escolha uma série existente.\n");
+            printf("Serie não encontrada. Por favor, escolha uma serie existente.\n");
         }
     }
 
     printf("Digite a turma da classe do aluno (letra): ");
     if (scanf("%c", &turma) != 1)
     {
-        printf("Entrada inválida.\n");
+        printf("Entrada invalida.\n");
         return;
     }
     getchar();
@@ -159,18 +159,18 @@ void remover_aluno(Classe **classes)
     char etapa[20];
     char nome_professor[100];
 
-    printf("Digite a matrícula do aluno a ser removido: ");
+    printf("Digite a matricula do aluno a ser removido: ");
     if (scanf("%d", &matricula) != 1)
     {
-        printf("Entrada inválida.\n");
+        printf("Entrada invalida.\n");
         return;
     }
     getchar();
 
-    printf("Digite a série da classe do aluno (número): ");
+    printf("Digite a serie da classe do aluno (numero): ");
     if (scanf("%hhu", &serie) != 1)
     {
-        printf("Entrada inválida.\n");
+        printf("Entrada invalida.\n");
         return;
     }
     getchar();
@@ -178,7 +178,7 @@ void remover_aluno(Classe **classes)
     printf("Digite a turma da classe do aluno (letra): ");
     if (scanf("%c", &turma) != 1)
     {
-        printf("Entrada inválida.\n");
+        printf("Entrada invalida.\n");
         return;
     }
     getchar();
@@ -247,23 +247,23 @@ void menu(Classe **classes)
         printf("5. Exibir alunos\n");
         printf("6. Pesquisar aluno\n");
         printf("7. Sair\n");
-        printf("Escolha uma opção: ");
+        printf("Escolha uma opcao: ");
         if (scanf("%d", &opcao) != 1)
         {
-            printf("Entrada inválida.\n");
+            printf("Entrada invalida.\n");
             continue;
         }
         getchar();
         if (opcao == 4 && *classes == NULL)
         {
             limpar_terminal();
-            printf("Não há classes cadastradas.\n");
+            printf("Nao ha classes cadastradas.\n");
             continue;
         }
         else if ((opcao == 5 || opcao == 6) && *classes == NULL)
         {
             limpar_terminal();
-            printf("Não há alunos cadastrados.\n");
+            printf("Nao ha alunos cadastrados.\n");
             continue;
         }
 
@@ -284,10 +284,10 @@ void menu(Classe **classes)
             break;
         case 5:
             limpar_terminal();
-            printf("Digite a série da classe dos alunos: ");
+            printf("Digite a serie da classe dos alunos: ");
             if (scanf("%hhu", &serie) != 1)
             {
-                printf("Entrada inválida.\n");
+                printf("Entrada invalida.\n");
                 continue;
             }
             getchar();
@@ -295,7 +295,7 @@ void menu(Classe **classes)
             printf("Digite a turma da classe dos alunos: ");
             if (scanf("%c", &turma) != 1)
             {
-                printf("Entrada inválida.\n");
+                printf("Entrada invalida.\n");
                 continue;
             }
             getchar();
@@ -303,7 +303,7 @@ void menu(Classe **classes)
             printf("Digite a etapa da classe dos alunos: ");
             if (scanf("%s", etapa) != 1)
             {
-                printf("Entrada inválida.\n");
+                printf("Entrada invalida.\n");
                 continue;
             }
             getchar();
@@ -318,7 +318,7 @@ void menu(Classe **classes)
             printf("Saindo...\n\n");
             break;
         default:
-            printf("Opção inválida!\n");
+            printf("Opcao invalida!\n");
             break;
         }
     } while (opcao != 7);

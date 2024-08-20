@@ -196,7 +196,7 @@ void exibir_alunos(
             limpar_terminal();
             if (classe_atual->alunos == NULL)
             {
-                printf("Não há alunos cadastrados nessa classe.\n");
+                printf("Nao ha alunos cadastrados nessa classe.\n");
                 return;
             }
             printf("Alunos matriculados na classe %d%c:\n", serie, turma);
@@ -226,7 +226,7 @@ void Pesquisar(Classe *classe, int matricula)
 
     while (classe != NULL)
     {
-        printf("Verificando classe: Série %u, Turma %c\n", classe->serie, classe->turma);
+        printf("Verificando classe: Serie %u, Turma %c\n", classe->serie, classe->turma);
         alunoAtual = classe->alunos;
 
         while (alunoAtual != NULL)
@@ -235,7 +235,7 @@ void Pesquisar(Classe *classe, int matricula)
             {
                 printf("Aluno encontrado:\n");
                 imprime_aluno(alunoAtual);
-                printf("Série: %u\n", classe->serie);
+                printf("Serie: %u\n", classe->serie);
                 printf("Turma: %c\n", classe->turma);
                 printf("Etapa: %s\n", classe->etapa);
                 printf("Nome do Professor: %s\n", classe->nome_professor);
@@ -250,7 +250,7 @@ void Pesquisar(Classe *classe, int matricula)
 
     if (!encontrou)
     {
-        printf("Nenhum aluno com a matrícula '%d' encontrado.\n", matricula);
+        printf("Nenhum aluno com a matricula '%d' encontrado.\n", matricula);
     }
 }
 
