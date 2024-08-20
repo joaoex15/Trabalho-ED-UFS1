@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "aluno.h": "c",
-        "classe.h": "c",
-        "projeto.h": "c",
-        "stdint.h": "c"
-    }
-}

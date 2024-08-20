@@ -2,44 +2,36 @@
 #ifndef ALUNO_H
 #define ALUNO_H
 
+#include "projeto.h"
+
 // Tipo abstrato Aluno
-typedef struct classe Classe;
-
 typedef struct aluno Aluno;
-struct aluno
-{
-    int matricula;
-    char nome[40];
-    int idade;
-    struct aluno *proxAluno;
-    struct aluno *antAluno;
-};
 
-// Função que matricula um aluno em uma classe caso essa classe seja encontrada.
-int matriculaAluno(
-    Classe **classes, 
-    int matricula, 
-    string nome, 
-    int idade,
-    uint8_t serie,
-    char turma,
-    string etapa,
-    string nome_professor);
+// Função que cria um registro de aluno e retorna um ponteiro para ele
+// @return Aluno* - SUCESSO
+// @return NULL - ERRO
+Aluno *cria_aluno(int matricula, int idade, string nome);
 
-// Função que remove um aluno de uma classe caso a classe seja encontrada, a quantidade de alunos da classe seja maior que 0 e o aluno seja encontrado. 
-int removeAluno(
-    Classe **classes, 
-    int matricula,
-    uint8_t serie,
-    char turma,
-    string etapa,
-    string nome_professor);
+// Função para obter o próximo aluno da turma
+// @return Aluno* - SUCESSO
+// @return NULL - Não há um pŕoximo aluno na turma
+Aluno *prox_aluno(Aluno *aluno);
 
-// Função para exibir alunos numa classe.
-void exibir_aluno( 
-	Classe *inicio,
-	int serie,
-	char turma);
+// Função para obter o aluno anterior da turma
+// @return Aluno* - SUCESSO
+// @return NULL - Não há um aluno anterior na turma
+Aluno *ant_aluno(Aluno *aluno);
 
-void Pesquisar(Classe *classes, int matricula);
+// Função que define o próximo aluno da lista
+void definir_prox_aluno(Aluno *aluno, Aluno *proxAluno);
+
+// Função que define o aluno anterior da lista
+void definir_ant_aluno(Aluno *aluno, Aluno *antAluno);
+
+// Função para obter a matrícula de um aluno
+int matricula_aluno(Aluno *aluno);
+
+// Função para imprimir informações do aluno
+void imprime_aluno(Aluno *aluno);
+
 #endif

@@ -10,4 +10,7 @@ typedef char *string;
 // Função que exibe mensagem de erro para o usuário
 void exibir_erro();
 
+// Função que limpa o terminal
+void limpar_terminal();
+
 #endif
