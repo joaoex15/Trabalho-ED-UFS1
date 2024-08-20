@@ -64,7 +64,7 @@ void exibir_classes(Classe *inicio)
 	Classe *classe_atual = inicio;
 
 	while(classe_atual != NULL){
-		printf("Classe %d%c - Professor: %s, Quantidade de Alunos: %d\n", classe_atual->serie, classe_atual->turma,
+		printf("Classe %d%c/%s - Professor: %s, Quantidade de Alunos: %d\n", classe_atual->serie, classe_atual->turma,classe_atual->etapa,
 		        classe_atual->nome_professor, classe_atual->qtd_alunos);
 		
 		classe_atual = classe_atual->prox;

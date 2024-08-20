@@ -205,15 +205,10 @@ void remover_aluno(Classe **classes) {
 void pesquisar_aluno(Classe *classes) {
     limpar_terminal();
 
-    char nome[40];
-    printf("Digite o nome do aluno a ser pesquisado: ");
-    if (fgets(nome, sizeof(nome), stdin) == NULL) {
-        printf("Erro ao ler nome do aluno.\n");
-        return;
-    }
-    nome[strcspn(nome, "\n")] = '\0';
-
-    Pesquisar(classes, nome);
+    int num_matricular;
+    printf("Digite o númro  da matricula do  aluno a ser pesquisado: ");
+    scanf("%d",&num_matricular);
+    Pesquisar(classes, num_matricular);
 }
 
 void limpar_memoria(Classe *classes) {

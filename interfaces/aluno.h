@@ -41,5 +41,5 @@ void exibir_aluno(
 	int serie,
 	char turma);
 
-void Pesquisar(Classe *classes, const char *nome);
+void Pesquisar(Classe *classes, int matricula);
 #endif

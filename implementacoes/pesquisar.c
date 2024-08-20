@@ -9,7 +9,7 @@
 
 
 
-void Pesquisar(Classe *d, const char *nome) {
+void Pesquisar(Classe *d, int matricula) {
     Aluno *alunoAtual;
     int encontrou = 0;
 
@@ -22,7 +22,7 @@ void Pesquisar(Classe *d, const char *nome) {
 
         // Percorre a lista de alunos na classe atual
         while (alunoAtual != NULL) {
-            if (strcmp(alunoAtual->nome, nome) == 0) {
+            if (alunoAtual->matricula == matricula) {
                 // Aluno encontrado, imprime todas as informações
                 printf("Aluno encontrado:\n");
                 printf("Nome: %s\n", alunoAtual->nome);
@@ -42,6 +42,6 @@ void Pesquisar(Classe *d, const char *nome) {
     }
 
     if (!encontrou) {
-        printf("Nenhum aluno com o nome '%s' encontrado.\n", nome);
+        printf("Nenhum aluno com a matrícula '%d' encontrado.\n", matricula);
     }
 }
