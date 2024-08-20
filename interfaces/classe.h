@@ -59,7 +59,7 @@ void exibir_alunos(
     string etapa);
 
 // Função para varrer a lista de classes buscando por um aluno e imprimir as informações da classe encontrada
-void Pesquisar(Classe *classe, int matricula);
+void pesquisar(Classe *classe, int matricula);
 
 // Função que retorna a série de uma classe
 uint8_t obter_serie_classe(Classe *classe);
@@ -73,5 +73,11 @@ Classe *prox_classe(Classe *classe);
 // @return Aluno* - SUCESSO
 // @return NULL - lista vazia
 Aluno *obter_alunos_classe(Classe *classe);
+
+// Função para obter a turma da classe
+char obter_turma_classe(Classe *classe);
+
+// Função para obter a etapa da classe
+string obter_etapa_classe(Classe *classe);
 
 #endif

@@ -72,11 +72,12 @@ void adicionar_aluno(Classe **classes)
     Classe *classeAtual;
     int serieExiste = 0;
 
-    printf("A matricula do aluno sera %d\n", matricula);
+    printf("Matricula do aluno sera: %d\n", matricula);
 
     printf("Digite o nome do aluno: ");
     if (fgets(nome, sizeof(nome), stdin) == NULL)
     {
+        limpar_terminal();
         printf("Erro ao ler nome do aluno.\n");
         return;
     }
@@ -85,6 +86,7 @@ void adicionar_aluno(Classe **classes)
     printf("Digite a idade do aluno: ");
     if (scanf("%d", &idade) != 1)
     {
+        limpar_terminal();
         printf("Entrada invalida.\n");
         return;
     }
@@ -125,6 +127,7 @@ void adicionar_aluno(Classe **classes)
     printf("Digite a turma da classe do aluno (letra): ");
     if (scanf("%c", &turma) != 1)
     {
+        limpar_terminal();
         printf("Entrada invalida.\n");
         return;
     }
@@ -133,11 +136,13 @@ void adicionar_aluno(Classe **classes)
     printf("Digite a etapa da classe do aluno: ");
     if (fgets(etapa, sizeof(etapa), stdin) == NULL)
     {
+        limpar_terminal();
         printf("Erro ao ler etapa.\n");
         return;
     }
     etapa[strcspn(etapa, "\n")] = '\0';
 
+    limpar_terminal();
     if (matriculaAluno(classes, matricula, nome, idade, serie, turma, etapa))
     {
         exibir_erro();
@@ -152,20 +157,15 @@ void adicionar_aluno(Classe **classes)
 void remover_aluno(Classe **classes)
 {
     limpar_terminal();
+    printf("Classes existentes:\n");
+    exibir_classes(*classes);
+    printf("\n");  
 
     int matricula;
     uint8_t serie;
     char turma;
     char etapa[20];
     char nome_professor[100];
-
-    printf("Digite a matricula do aluno a ser removido: ");
-    if (scanf("%d", &matricula) != 1)
-    {
-        printf("Entrada invalida.\n");
-        return;
-    }
-    getchar();
 
     printf("Digite a serie da classe do aluno (numero): ");
     if (scanf("%hhu", &serie) != 1)
@@ -191,6 +191,40 @@ void remover_aluno(Classe **classes)
     }
     etapa[strcspn(etapa, "\n")] = '\0';
 
+    Classe *classeAtual = *classes;
+    while (classeAtual != NULL) {
+        if (obter_serie_classe(classeAtual) == serie &&
+            obter_turma_classe(classeAtual) == turma &&
+            strcmp(obter_etapa_classe(classeAtual), etapa) == 0) {
+            break;
+        }
+        classeAtual = prox_classe(classeAtual);
+    }
+    
+    if (classeAtual == NULL) {
+        limpar_terminal();
+        printf("Classe nao encontrada.\n");
+        return;
+    } else if (obter_alunos_classe(classeAtual) == NULL){
+        limpar_terminal();
+        printf("Não ha alunos cadastrados nessa classe.\n");
+        return;
+    }
+
+    exibir_alunos(
+        classeAtual,
+        obter_serie_classe(classeAtual),
+        obter_turma_classe(classeAtual),
+        obter_etapa_classe(classeAtual)
+    );
+    printf("Digite a matricula do aluno a ser removido: ");
+    if (scanf("%d", &matricula) != 1) {
+        printf("Entrada invalida.\n");
+        return;
+    }
+    getchar();
+
+    limpar_terminal();
     if (removeAluno(classes, matricula, serie, turma, etapa))
     {
         exibir_erro();
@@ -206,9 +240,9 @@ void pesquisar_aluno(Classe *classes)
     limpar_terminal();
 
     int num_matricular;
-    printf("Digite o númro  da matricula do  aluno a ser pesquisado: ");
+    printf("Digite o numero  da matricula do  aluno a ser pesquisado: ");
     scanf("%d", &num_matricular);
-    Pesquisar(classes, num_matricular);
+    pesquisar(classes, num_matricular);
 }
 
 void limpar_memoria(Classe *classes)

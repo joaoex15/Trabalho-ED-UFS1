@@ -205,6 +205,7 @@ void exibir_alunos(
             while (aluno_atual != NULL)
             {
                 imprime_aluno(aluno_atual);
+                printf("\n");
                 aluno_atual = prox_aluno(aluno_atual);
             }
             return;
@@ -217,7 +218,7 @@ void exibir_alunos(
     return;
 }
 
-void Pesquisar(Classe *classe, int matricula)
+void pesquisar(Classe *classe, int matricula)
 {
     Aluno *alunoAtual;
     int encontrou = 0;
@@ -235,8 +236,7 @@ void Pesquisar(Classe *classe, int matricula)
             {
                 printf("Aluno encontrado:\n");
                 imprime_aluno(alunoAtual);
-                printf("Serie: %u\n", classe->serie);
-                printf("Turma: %c\n", classe->turma);
+                printf("Serie: %u/%c\n", classe->serie, classe->turma);
                 printf("Etapa: %s\n", classe->etapa);
                 printf("Nome do Professor: %s\n", classe->nome_professor);
                 printf("------------------------\n");
@@ -250,6 +250,7 @@ void Pesquisar(Classe *classe, int matricula)
 
     if (!encontrou)
     {
+        limpar_terminal();
         printf("Nenhum aluno com a matricula '%d' encontrado.\n", matricula);
     }
 }
@@ -267,4 +268,12 @@ Classe *prox_classe(Classe *classe)
 Aluno *obter_alunos_classe(Classe *classe)
 {
     return classe->alunos;
+}
+
+char obter_turma_classe(Classe *classe) {
+    return classe->turma;
+}
+
+string obter_etapa_classe(Classe *classe) {
+    return classe->etapa;
 }
